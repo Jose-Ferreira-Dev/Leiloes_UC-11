@@ -30,4 +30,9 @@ public class conectaDAO {
         }
         return conn;
     }
+
+    Connection getConnection() {
+        return null;
+    }
+    
 }

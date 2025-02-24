@@ -53,7 +53,7 @@ public class ProdutosDAO {
     if (conn != null) { // Verifica se a conexão foi bem-sucedida
         try {
             // Selecionando todos os produtos
-            String sql = "SELECT nome, status, valor FROM Produtos";
+            String sql = "SELECT id, nome, status, valor FROM Produtos";
             
             // Preparando
             prep = conn.prepareStatement(sql);
@@ -64,11 +64,12 @@ public class ProdutosDAO {
             // Limpa a lista antes de adicionar novos produtos
             listagem.clear();
             
-            // Itera sobre o ResultSet e adiciona os produtos à lista
+            // Altera sobre o ResultSet e adiciona os produtos à lista
             while (resultset.next()) {
                 ProdutosDTO produto = new ProdutosDTO();
+                produto.setId(resultset.getInt("id"));
                 produto.setNome(resultset.getString("nome"));
-                produto.setStatus(resultset.getString("status")); // Supondo que 'descricao' é o status
+                produto.setStatus(resultset.getString("status")); 
                 produto.setValor(resultset.getDouble("valor"));
                 
                 listagem.add(produto);
